@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 from django.views.decorators.cache import never_cache
 from django.utils.translation import ugettext_lazy as _
 
@@ -31,11 +31,11 @@ class SubscriptionCMSPlugin(CMSPluginBase):
     def get_plugin_urls(self):
         subscription_view = self.get_subscription_view()
 
-        return patterns('',
+        return [
             url(
                 r'^subscribe/$', never_cache(subscription_view),
                 name='aldryn-mailchimp-subscribe'),
-        )
+        ]
 
 plugin_pool.register_plugin(SubscriptionCMSPlugin)
 
